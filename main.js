@@ -288,32 +288,25 @@ let addressBook = [
 
 const getContacts = () => {
     fetch('https://randomuser.me/api/?results=20&nat=us')
-    .then((res) => res.json() )
-    .then(data => addressBook = data.results)
-    .then(console.log(addressBook))
-    .then(addressBook => addressBook.map((person) => {
-
-        let html = `
-
-        <img src="${person.picture.large}">
-        <h2>${person.name.first} ${person.name.last}</h2>
-        <div id="moreInfo">
-            <h3>${person.address}</h3>
-            <h3>${person.email}</h3>
-            <h3>${person.phone}</h3>
-            <h3>${person.dob}</h3>   
-        </div>
-        <button> onclick=calls the toggle function>more/less info button that toggle visibility</button>
-
-
-
-
-        
-        
-        
-        `; //end of interp string
-    }))
-}
+      .then((res) => res.json())
+      .then(data => addressBook = data.results)
+      .then(console.log(addressBook))
+      .then(addressBook => {
+        const currentPerson = addressBook[0];
+        const html = `
+          <img src="${currentPerson.picture.large}">
+          <h2>${currentPerson.name.first} ${currentPerson.name.last}</h2>
+          <div id="moreInfo">
+            <h3>${currentPerson.address}</h3>
+            <h3>${currentPerson.email}</h3>
+            <h3>${currentPerson.phone}</h3>
+            <h3>${currentPerson.dob}</h3>
+          </div>
+        `;
+        document.querySelector('.contactCard').innerHTML = html;
+      });
+  };
+  
 
 
 // dark theme
@@ -321,3 +314,5 @@ const checkbox = document.getElementById("checkbox")
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark")
 })
+
+getContacts();

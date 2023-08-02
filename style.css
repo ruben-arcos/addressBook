@@ -13,6 +13,7 @@ body {
     gap: 20px;
     transition: background 0.2s linear;
     background-image: linear-gradient(to right, #005aa7, #fffde4);
+    font-family: 'Lato', sans-serif;
 }
 
 h1 > span {
